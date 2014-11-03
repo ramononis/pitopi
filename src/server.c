@@ -7,18 +7,18 @@
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include "communication.h"
 
 void error(const char *msg)
 {
     perror(msg);
     exit(1);
 }
-
+int idnr = 13337;
 int main(int argc, char *argv[])
 {
      int sockfd, newsockfd, portno;
      socklen_t clilen;
-     char buffer[256];
      struct sockaddr_in serv_addr, cli_addr;
      int n;
      if (argc < 2) {
@@ -43,12 +43,16 @@ int main(int argc, char *argv[])
                  &clilen);
      if (newsockfd < 0) 
           error("ERROR on accept");
-     bzero(buffer,256);
-     n = read(newsockfd,buffer,255);
-     if (n < 0) error("ERROR reading from socket");
-     printf("Here is the message: %s\n",buffer);
-     n = write(newsockfd,"I got your message",18);
-     if (n < 0) error("ERROR writing to socket");
+     struct message msg = {T_GO_SCAN, 0, 0, 0, 0, idnr++};
+     write(newsockfd, &msg, sizeof(struct message));
+     while(read(newsockfd, &msg, sizeof(struct message))) {
+         if(msg.type == T_SCAN_RESULT) {
+             int number = msg.arg2;
+             int reading = msg.arg1;
+         } else if(msg.type == T_SCAN_DONE) {
+             
+         }
+     }
      close(newsockfd);
      close(sockfd);
      return 0; 

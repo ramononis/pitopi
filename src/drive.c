@@ -1,4 +1,5 @@
 #include "drive.h"
+#include <stdio.h>
 #include <wiringPi.h>
 #include <unistd.h>
 
@@ -25,6 +26,7 @@ void timedoff(int millis) {
 //when millis<0, the function doesn't turn it off.
 //when millis>0, the functions turns it off after the specified time in ms.
 void forward(int millis) {
+
     digitalWrite(AIN1, 1);
     digitalWrite(AIN2, 0);
     digitalWrite(BIN1, 1);

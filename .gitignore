@@ -2,4 +2,4 @@
 *.swn
 *.out
 *.o
-*.swo
+*.sw*

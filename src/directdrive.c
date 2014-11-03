@@ -18,6 +18,10 @@ int main(int argc, char *argv[]) {
             left(-1);
         } else if(input == 'd') {
             right(-1);
+        } else if(input == 'q') {
+            forward_left(-1);
+        } else if(input == 'e') {
+            forward_right(-1);
         } else if(input == ' ') {
             off();
         } else if(input == 'x') {
@@ -28,5 +32,6 @@ int main(int argc, char *argv[]) {
     if(argc > 1) {
         system("/bin/stty cooked");
     }
+    printf("\n");
     return 0;
 }

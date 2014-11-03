@@ -1,7 +1,7 @@
 #ifndef DRIVE_H
 #define DRIVEH
 #ifndef DEFAULT_MILLIS
-#define DEFAULT_MILLIS 200
+#define DEFAULT_MILLIS 1000
 #endif //DEFAULT_MILLIS
 #define PWMA 0
 #define AIN1 2
