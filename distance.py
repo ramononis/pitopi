@@ -3,7 +3,7 @@ import time
 from collections import Counter
 
 def scan(sample):
-	lim=300		#maximum limit of distance measurement (any value over this which be initialized to the limit value)
+	lim=255	#maximum limit of distance measurement (any value over this which be initialized to the limit value)
 	buf=[0]*40
 	GPIO.setmode(GPIO.BCM)
 	TRIG=3
@@ -41,7 +41,7 @@ def scan(sample):
 		if dist<lim and dist>=0:
 			buf[i]=dist
 		else:
-			buf[i]=lim
+			return lim
 	
 		print buf[i]
 	#Find the sample that is most common among all the samples for a particular angle
